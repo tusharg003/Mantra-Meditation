@@ -88,6 +88,7 @@ const Home = () => {
 
   const handlePauseToggle = () => {
     setPause((prevPause) => !prevPause);
+    setIsBlinking(true);
   };
   const handleSettingModalOpen = () => {
     setPause(true);
