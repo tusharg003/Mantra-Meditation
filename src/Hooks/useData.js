@@ -1,13 +1,27 @@
+
 const useData = () => {
-    const data = {
-        font: 'font',
+    // Retrieve data from local storage
+    const storedData = JSON.parse(localStorage.getItem('chantData'));
+
+    // Set default values if data is not available
+    const defaultData = {
+        username: 'Tushar',
+        font: '',
         text: 'Naam',
-        count: '10',
-        totalCount: '12',
-    }
+        totalCount: 0,
+        totalTime: 0,
+    };
 
-    localStorage.setItem('chantData', data);
+    // Merge stored data with default data
+    const data = { ...defaultData, ...storedData };
 
-    return data;
-}
-export default useData
+    // Update local storage with merged data
+    const updateData = (updatedData) => {
+        const newData = { ...data, ...updatedData };
+        localStorage.setItem('chantData', JSON.stringify(newData));
+    };
+
+    return { ...data, updateData };
+};
+
+export default useData;

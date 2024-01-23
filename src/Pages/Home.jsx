@@ -30,16 +30,21 @@ import {
   SlLogout,
   SlReload,
   SlSettings,
+  SlUser,
 } from 'react-icons/sl';
 import '../font.css'; // Import the fonts.css file
+import useData from '../Hooks/useData';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
+  const initialData = useData();
   const [isBlinking, setIsBlinking] = useState(true); // to control the blinking action
   const [val, setVal] = useState(100); // speed of the blink
   const [count, setCount] = useState(0); // count of the number of blinks
+  const [totalCount, setTotalCount] = useState(initialData.totalCount);
   const [pause, setPause] = useState(true);
-  const [selectedFont, setSelectedFont] = useState();
-  const [chant, setChant] = useState('Naam');
+  const [selectedFont, setSelectedFont] = useState(initialData.font);
+  const [chant, setChant] = useState(initialData.text);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const buttons = [
     { name: 'English-1', value: 'english-1' },
@@ -69,16 +74,17 @@ const Home = () => {
       blinkInterval = setInterval(() => {
         setIsBlinking((prevIsBlinking) => !prevIsBlinking);
         if (!isBlinking) {
-          // essentially when blinks count increases, false taken for the right time updating
           setCount((prevCount) => prevCount + 1);
+          setTotalCount((prevCount) => prevCount + 1);
+          handleLocalStorageUpdation();
         }
       }, val * 5);
     }
-
     return () => {
       clearInterval(blinkInterval);
     };
-  }, [val, count, isBlinking, pause]); // call this effect if val, count, isBlink, or pause changes
+  });
+  // call this effect if val, count, isBlink, or pause changes
 
   const handlePauseToggle = () => {
     setPause((prevPause) => !prevPause);
@@ -87,14 +93,23 @@ const Home = () => {
     setPause(true);
     onOpen();
   };
+  const handleLocalStorageUpdation = () => {
+    initialData.updateData({
+      font: selectedFont,
+      text: chant,
+      totalCount: totalCount,
+    });
+  };
   const handleModalClose = () => {
     setIsBlinking(true);
+    handleLocalStorageUpdation();
     onClose();
   };
   const handleResetCount = () => {
     setCount(0);
     setIsBlinking(true);
     setPause(true);
+    handleLocalStorageUpdation();
   };
   return (
     <>
@@ -125,34 +140,55 @@ const Home = () => {
             <SliderThumb />
           </Slider>
         </Box>
-
         <Flex w={'100%'} maxW={'500px'} justifyContent={'space-around'} mb={3}>
-          <Box
-            cursor={'pointer'}
-            _hover={{ transform: 'scale(1.1)' }}
-            onClick={handleSettingModalOpen}>
-            <SlSettings size={'1.2em'} />
-          </Box>
-          <Box
-            cursor={'pointer'}
-            _hover={{ transform: 'scale(1.1)' }}
-            onClick={handlePauseToggle}>
-            {pause ? (
-              <SlControlPlay size={'1.2em'} />
-            ) : (
-              <SlControlPause size={'1.2em'} />
-            )}
-          </Box>
-          <Box
-            cursor={'pointer'}
-            _hover={{ transform: 'scale(1.1)' }}
-            onClick={handleResetCount}>
-            <SlReload size={'1.2em'} />
-          </Box>
-
-          <Box cursor={'pointer'} _hover={{ transform: 'scale(1.1)' }}>
-            <SlLogout size={'1.2em'} />
-          </Box>
+          <>
+            <Box
+              as={Link}
+              to={`/aa`}
+              cursor={'pointer'}
+              _hover={{ transform: 'scale(1.1)' }}
+              opacity={pause ? 1 : 0.2} // Make it partially transparent when pause is false
+              pointerEvents={pause ? 'auto' : 'none'} // Enable pointer events when pause is true
+            >
+              <SlUser size={'1.2em'} />
+            </Box>
+            <Box
+              cursor={'pointer'}
+              _hover={{ transform: 'scale(1.1)' }}
+              onClick={handleSettingModalOpen}
+              opacity={pause ? 1 : 0.2} // Make it partially transparent when pause is false
+              pointerEvents={pause ? 'auto' : 'none'} // Enable pointer events when pause is true
+            >
+              <SlSettings size={'1.2em'} />
+            </Box>
+            <Box
+              cursor={'pointer'}
+              _hover={{ transform: 'scale(1.1)' }}
+              onClick={handlePauseToggle}>
+              {pause ? (
+                <SlControlPlay size={'1.2em'} />
+              ) : (
+                <SlControlPause size={'1.2em'} />
+              )}
+            </Box>
+            <Box
+              cursor={'pointer'}
+              _hover={{ transform: 'scale(1.1)' }}
+              onClick={handleResetCount}
+              opacity={pause ? 1 : 0.2} // Make it partially transparent when pause is false
+              pointerEvents={pause ? 'auto' : 'none'} // Enable pointer events when pause is true
+            >
+              <SlReload size={'1.2em'} />
+            </Box>
+            <Box
+              cursor={'pointer'}
+              _hover={{ transform: 'scale(1.1)' }}
+              opacity={pause ? 1 : 0.2} // Make it partially transparent when pause is false
+              pointerEvents={pause ? 'auto' : 'none'} // Enable pointer events when pause is true
+            >
+              <SlLogout size={'1.2em'} />
+            </Box>
+          </>
         </Flex>
       </VStack>
 
