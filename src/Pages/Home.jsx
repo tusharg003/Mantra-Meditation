@@ -114,7 +114,7 @@ const Home = () => {
   };
   return (
     <>
-      <VStack pb={5} h={'100vh'} bg={'gray.800'} justifyContent={'center'}>
+      <VStack h={'95vh'} bg={'gray.800'}>
         <Flex
           fontSize={{ base: '4em', md: '8em', lg: '10em' }}
           w={'90%'}
