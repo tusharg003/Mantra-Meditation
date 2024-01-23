@@ -1,0 +1,43 @@
+@font-face {
+    font-family: typeWriter;
+    src: url(./fonts/TruetypewriterPolyglott-mELa.ttf);
+}
+
+@font-face {
+    font-family: cookieMonster;
+    src: url(./fonts/Cookiemonster-gv11.ttf);
+}
+
+@font-face {
+    font-family: english-1;
+    src: url(./fonts/Autography-DOLnW.otf);
+}
+
+
+@font-face {
+    font-family: english-3;
+    src: url(./fonts/MigaeSemibold-3zd2M.otf);
+}
+
+@font-face {
+    font-family: english-4;
+    src: url(./fonts/Typographica-Blp5.ttf);
+}
+
+@font-face {
+    font-family: हिंदी;
+    src: url(./fonts/TiroDevanagariHindi-Regular.ttf);
+
+}
+
+@font-face {
+    font-family: hindi-en1;
+    src: url(./fonts/MyhindiHindigyan-GW1a.ttf);
+
+}
+
+@font-face {
+    font-family: hindi-en2;
+    src: url(./fonts/NirvanuHindiNormal-L464.otf);
+
+}
