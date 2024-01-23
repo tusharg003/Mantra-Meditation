@@ -114,13 +114,13 @@ const Home = () => {
   };
   return (
     <>
-      <VStack h={'95vh'} bg={'gray.800'}>
+      <VStack h={'100vh'} bg={'gray.800'}>
         <Flex
-          fontSize={{ base: '4em', md: '8em', lg: '10em' }}
+          fontSize={{ base: '5em', md: '8em', lg: '10em' }}
           w={'90%'}
           justifyContent={'center'}
           alignItems={'center'}
-          flexGrow={1}
+          mt={'40'}
           fontFamily={selectedFont}
           css={{
             opacity: isBlinking ? 1 : 0,
@@ -128,68 +128,82 @@ const Home = () => {
           }}>
           {chant}
         </Flex>
-        <Box>{count}</Box>
-        <Box w={'50%'} my={3}>
-          <Slider
-            aria-label='slider-ex-1'
-            onChangeEnd={handleChange}
-            max={85}
-            defaultValue={0}>
-            <SliderTrack>
-              <SliderFilledTrack />
-            </SliderTrack>
-            <SliderThumb />
-          </Slider>
-        </Box>
-        <Flex w={'100%'} maxW={'500px'} justifyContent={'space-around'} mb={3}>
-          <>
-            <Box
-              as={Link}
-              to={`/aa`}
-              cursor={'pointer'}
-              _hover={{ transform: 'scale(1.1)' }}
-              opacity={pause ? 1 : 0.2} // Make it partially transparent when pause is false
-              pointerEvents={pause ? 'auto' : 'none'} // Enable pointer events when pause is true
-            >
-              <SlUser size={'1.2em'} />
-            </Box>
-            <Box
-              cursor={'pointer'}
-              _hover={{ transform: 'scale(1.1)' }}
-              onClick={handleSettingModalOpen}
-              opacity={pause ? 1 : 0.2} // Make it partially transparent when pause is false
-              pointerEvents={pause ? 'auto' : 'none'} // Enable pointer events when pause is true
-            >
-              <SlSettings size={'1.2em'} />
-            </Box>
-            <Box
-              cursor={'pointer'}
-              _hover={{ transform: 'scale(1.1)' }}
-              onClick={handlePauseToggle}>
-              {pause ? (
-                <SlControlPlay size={'1.2em'} />
-              ) : (
-                <SlControlPause size={'1.2em'} />
-              )}
-            </Box>
-            <Box
-              cursor={'pointer'}
-              _hover={{ transform: 'scale(1.1)' }}
-              onClick={handleResetCount}
-              opacity={pause ? 1 : 0.2} // Make it partially transparent when pause is false
-              pointerEvents={pause ? 'auto' : 'none'} // Enable pointer events when pause is true
-            >
-              <SlReload size={'1.2em'} />
-            </Box>
-            <Box
-              cursor={'pointer'}
-              _hover={{ transform: 'scale(1.1)' }}
-              opacity={pause ? 1 : 0.2} // Make it partially transparent when pause is false
-              pointerEvents={pause ? 'auto' : 'none'} // Enable pointer events when pause is true
-            >
-              <SlLogout size={'1.2em'} />
-            </Box>
-          </>
+        <Flex
+          pos={'absolute'}
+          bottom={0}
+          w={{ base: '80%', md: '50%' }}
+          my={3}
+          gap={5}
+          justifyContent={'center'}
+          direction={'column'}>
+          <Text margin={'auto'}> {count}</Text>
+          <Box>
+            <Slider
+              aria-label='slider-ex-1'
+              onChangeEnd={handleChange}
+              max={85}
+              defaultValue={0}>
+              <SliderTrack>
+                <SliderFilledTrack />
+              </SliderTrack>
+              <SliderThumb />
+            </Slider>
+          </Box>
+          <Flex
+            mx={'auto'}
+            w={'100%'}
+            maxW={'500px'}
+            justifyContent={'space-around'}
+            mb={3}>
+            <>
+              <Box
+                as={Link}
+                to={`/aa`}
+                cursor={'pointer'}
+                _hover={{ transform: 'scale(1.1)' }}
+                opacity={pause ? 1 : 0.2} // Make it partially transparent when pause is false
+                pointerEvents={pause ? 'auto' : 'none'} // Enable pointer events when pause is true
+              >
+                <SlUser size={'1.2em'} />
+              </Box>
+              <Box
+                cursor={'pointer'}
+                _hover={{ transform: 'scale(1.1)' }}
+                onClick={handleSettingModalOpen}
+                opacity={pause ? 1 : 0.2} // Make it partially transparent when pause is false
+                pointerEvents={pause ? 'auto' : 'none'} // Enable pointer events when pause is true
+              >
+                <SlSettings size={'1.2em'} />
+              </Box>
+              <Box
+                cursor={'pointer'}
+                _hover={{ transform: 'scale(1.1)' }}
+                onClick={handlePauseToggle}>
+                {pause ? (
+                  <SlControlPlay size={'1.2em'} />
+                ) : (
+                  <SlControlPause size={'1.2em'} />
+                )}
+              </Box>
+              <Box
+                cursor={'pointer'}
+                _hover={{ transform: 'scale(1.1)' }}
+                onClick={handleResetCount}
+                opacity={pause ? 1 : 0.2} // Make it partially transparent when pause is false
+                pointerEvents={pause ? 'auto' : 'none'} // Enable pointer events when pause is true
+              >
+                <SlReload size={'1.2em'} />
+              </Box>
+              <Box
+                cursor={'pointer'}
+                _hover={{ transform: 'scale(1.1)' }}
+                opacity={pause ? 1 : 0.2} // Make it partially transparent when pause is false
+                pointerEvents={pause ? 'auto' : 'none'} // Enable pointer events when pause is true
+              >
+                <SlLogout size={'1.2em'} />
+              </Box>
+            </>
+          </Flex>
         </Flex>
       </VStack>
 
