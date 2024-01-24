@@ -281,7 +281,7 @@ const Home = () => {
                 onChange={(e) => setChant(e.target.value)}
               />
             </InputGroup>
-            <VStack gap={3} my={5}>
+            <VStack gap={3} px={4}  my={5} alignItems={'flex-start'}>
               <Grid
                 templateColumns={{
                   base: '1fr',
