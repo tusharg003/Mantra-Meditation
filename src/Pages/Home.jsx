@@ -32,7 +32,7 @@ import {
   SlSettings,
   SlUser,
 } from 'react-icons/sl';
-import { CiText } from 'react-icons/ci';
+import { VscTextSize } from 'react-icons/vsc';
 import '../font.css'; // Import the fonts.css file
 import useData from '../Hooks/useData';
 import { Link } from 'react-router-dom';
@@ -223,15 +223,6 @@ const Home = () => {
                 <SlReload size={'1.2em'} />
               </Box>
               <Box
-                cursor={'pointer'}
-                _hover={{ transform: 'scale(1.1)' }}
-                onClick={handleTextSize}
-                opacity={pause ? 1 : 0.2} // Make it partially transparent when pause is false
-                pointerEvents={pause ? 'auto' : 'none'} // Enable pointer events when pause is true
-              >
-                <CiText size={'1.3em'} />
-              </Box>
-              <Box
                 as={Link}
                 // to={'/auth'}
                 cursor={'pointer'}
@@ -240,6 +231,15 @@ const Home = () => {
                 pointerEvents={pause ? 'auto' : 'none'} // Enable pointer events when pause is true
               >
                 <SlLogout size={'1.2em'} />
+              </Box>{' '}
+              <Box
+                cursor={'pointer'}
+                _hover={{ transform: 'scale(1.1)' }}
+                onClick={handleTextSize}
+                opacity={pause ? 1 : 0.2} // Make it partially transparent when pause is false
+                pointerEvents={pause ? 'auto' : 'none'} // Enable pointer events when pause is true
+              >
+                <VscTextSize size={'1.2em'} />
               </Box>
             </>
           </Flex>
@@ -281,7 +281,7 @@ const Home = () => {
                 onChange={(e) => setChant(e.target.value)}
               />
             </InputGroup>
-            <VStack gap={3} px={4}  my={5} alignItems={'flex-start'}>
+            <VStack gap={3} px={4} my={5} alignItems={'flex-start'}>
               <Grid
                 templateColumns={{
                   base: '1fr',
