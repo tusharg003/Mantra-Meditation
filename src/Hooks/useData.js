@@ -5,11 +5,12 @@ const useData = () => {
 
     // Set default values if data is not available
     const defaultData = {
-        username: 'Tushar',
+        username: 'username',
         font: '',
-        text: 'Naam',
+        text: 'Chant',
         totalCount: 0,
         totalTime: 0,
+        hasVisited: false,
     };
 
     // Merge stored data with default data

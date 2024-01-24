@@ -67,6 +67,18 @@ const Home = () => {
   const calculateTransitionDuration = () => {
     return `${val * 0.001}s`; // Adjust the multiplier based on your requirements
   };
+  useEffect(() => {
+    // Check if it's the first visit
+    const isFirstVisit = !initialData.hasVisited;
+
+    // If it's the first visit, open the modal
+    if (isFirstVisit) {
+      onOpen();
+      // Set a flag in initialData to indicate that the modal has been opened
+      initialData.hasVisited = true;
+      handleLocalStorageUpdation();
+    }
+  }, []);
 
   useEffect(() => {
     let blinkInterval;
@@ -101,6 +113,7 @@ const Home = () => {
       username: username,
       text: chant,
       totalCount: totalCount,
+      hasVisited: true,
     });
   };
   const handleModalClose = () => {
@@ -144,7 +157,7 @@ const Home = () => {
               aria-label='slider-ex-1'
               onChangeEnd={handleChange}
               max={85}
-              defaultValue={0}>
+              defaultValue={10}>
               <SliderTrack>
                 <SliderFilledTrack />
               </SliderTrack>
