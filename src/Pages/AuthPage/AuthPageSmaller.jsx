@@ -7,9 +7,9 @@ const AuthPageSmaller = () => {
       w={'300px'}
       h={'fit-content'}
       borderRadius={3}
-      p={2}
+      border={'1px solid gray'}
       py={8}
-      bgColor={'gray.300'}
+      bgColor={'gray.900'}
       mx={'auto'}>
       <Text fontSize={'1.3em'} fontFamily={'serif'}>
         Create New Account

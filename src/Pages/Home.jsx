@@ -45,6 +45,7 @@ const Home = () => {
   const [pause, setPause] = useState(true);
   const [selectedFont, setSelectedFont] = useState(initialData.font);
   const [chant, setChant] = useState(initialData.text);
+  const [username, setUserName] = useState(initialData.username);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const buttons = [
     { name: 'English-1', value: 'english-1' },
@@ -97,6 +98,7 @@ const Home = () => {
   const handleLocalStorageUpdation = () => {
     initialData.updateData({
       font: selectedFont,
+      username: username,
       text: chant,
       totalCount: totalCount,
     });
@@ -195,6 +197,8 @@ const Home = () => {
                 <SlReload size={'1.2em'} />
               </Box>
               <Box
+                as={Link}
+                // to={'/auth'}
                 cursor={'pointer'}
                 _hover={{ transform: 'scale(1.1)' }}
                 opacity={pause ? 1 : 0.2} // Make it partially transparent when pause is false
@@ -217,6 +221,20 @@ const Home = () => {
             <InputGroup>
               <InputLeftAddon bg={'transparent'}>
                 <Text fontWeight={700} fontSize={'lg'}>
+                  Name :{' '}
+                </Text>
+              </InputLeftAddon>
+              <Input
+                variant={'flushed'}
+                type='text'
+                placeholder='Enter your Name'
+                value={username}
+                onChange={(e) => setUserName(e.target.value)}
+              />
+            </InputGroup>{' '}
+            <InputGroup>
+              <InputLeftAddon bg={'transparent'}>
+                <Text fontWeight={700} fontSize={'lg'}>
                   Chant :{' '}
                 </Text>
               </InputLeftAddon>
@@ -228,7 +246,6 @@ const Home = () => {
                 onChange={(e) => setChant(e.target.value)}
               />
             </InputGroup>
-
             <VStack gap={3} my={5}>
               <Grid
                 templateColumns={{

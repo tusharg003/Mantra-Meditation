@@ -5,8 +5,9 @@ const AuthPageLarge = () => {
     <VStack
       px={10}
       py={12}
-      borderRadius={3}
-      bgColor={'gray.300'}
+      borderRadius={15}
+      bgColor={'gray.900'}
+      border={'1px solid gray'}
       position={'absolute'}
       right={0}
       mr={'15em'}
