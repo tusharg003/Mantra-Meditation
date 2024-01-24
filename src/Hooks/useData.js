@@ -11,6 +11,7 @@ const useData = () => {
         totalCount: 0,
         totalTime: 0,
         hasVisited: false,
+        fontSize: 0,
     };
 
     // Merge stored data with default data

@@ -32,6 +32,7 @@ import {
   SlSettings,
   SlUser,
 } from 'react-icons/sl';
+import { CiText } from 'react-icons/ci';
 import '../font.css'; // Import the fonts.css file
 import useData from '../Hooks/useData';
 import { Link } from 'react-router-dom';
@@ -47,6 +48,7 @@ const Home = () => {
   const [chant, setChant] = useState(initialData.text);
   const [username, setUserName] = useState(initialData.username);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   const buttons = [
     { name: 'English-1', value: 'english-1' },
     { name: 'English-2', value: 'english-2' },
@@ -58,6 +60,9 @@ const Home = () => {
     { name: 'Typewriter', value: 'typeWriter' },
     { name: 'Cookie Monster', value: 'cookieMonster' },
   ];
+  const [fontsize, setFontSize] = useState(initialData.fontSize);
+  const textSizes = ['2em', '3em', '4em', '6em', '8em', '10em'];
+
   const handleChange = (newVal) => {
     const reverseVal = 100 - newVal;
     setVal(reverseVal);
@@ -114,6 +119,7 @@ const Home = () => {
       text: chant,
       totalCount: totalCount,
       hasVisited: true,
+      fontSize: fontsize,
     });
   };
   const handleModalClose = () => {
@@ -127,11 +133,18 @@ const Home = () => {
     setPause(true);
     handleLocalStorageUpdation();
   };
+  const handleTextSize = () => {
+    const nextIndex = (fontsize + 1) % textSizes.length;
+    setFontSize(nextIndex);
+    handleLocalStorageUpdation();
+  };
+
   return (
     <>
-      <VStack h={'100vh'} bg={'gray.800'}>
+      <VStack h={{ base: '90vh', md: '100vh' }} bg={'gray.800'}>
         <Flex
-          fontSize={{ base: '5em', md: '8em', lg: '10em' }}
+          // fontSize={{ base: '4em', md: '8em', lg: '10em' }}
+          fontSize={textSizes[fontsize]}
           w={'90%'}
           justifyContent={'center'}
           alignItems={'center'}
@@ -208,6 +221,15 @@ const Home = () => {
                 pointerEvents={pause ? 'auto' : 'none'} // Enable pointer events when pause is true
               >
                 <SlReload size={'1.2em'} />
+              </Box>
+              <Box
+                cursor={'pointer'}
+                _hover={{ transform: 'scale(1.1)' }}
+                onClick={handleTextSize}
+                opacity={pause ? 1 : 0.2} // Make it partially transparent when pause is false
+                pointerEvents={pause ? 'auto' : 'none'} // Enable pointer events when pause is true
+              >
+                <CiText size={'1.3em'} />
               </Box>
               <Box
                 as={Link}
