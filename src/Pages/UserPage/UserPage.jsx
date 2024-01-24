@@ -13,9 +13,15 @@ const UserPage = () => {
           Welcome, {initialData.username}!
         </Text>
         <Flex alignItems={'center'} justifyContent={'space-between'} w={'100%'}>
-          <Text fontSize={{ base: 'md', md: 'lg' }}>
-            Total Chants: {initialData.totalCount}
-          </Text>
+          <Flex direction={'column'} gap={1}>
+            <Text fontSize={{ base: 'md', md: 'lg' }}>
+              Total Chants: {initialData.totalCount}
+            </Text>{' '}
+            <Text fontSize={{ base: 'md', md: 'lg' }}>
+              Equivalent to {Math.floor(initialData.totalCount / 108)} maala
+              {initialData.totalCount / 108 < 2 ? null : 's'}.
+            </Text>
+          </Flex>
           <Button
             as={Link}
             to={'/'}
